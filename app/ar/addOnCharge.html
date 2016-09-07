@@ -1,0 +1,113 @@
+<div ng-controller="aocController" ng-clock>
+        <table>
+            <thead>
+                <tr>
+                    <th ng-click="sortData('id')">
+                        Sl. No. <div ng-class="getSortClass('id')"></div>
+                    </th>                
+                    <th ng-click="sortData('name')">
+                        Name <div ng-class="getSortClass('name')"></div>
+                    </th>
+                    <th ng-click="sortData('amount')">
+                        Amount <div ng-class="getSortClass('amount')"></div>
+                    </th>
+                    <th ng-click="sortData('taxType')">
+                        Tax Type <div ng-class="getSortClass('taxType')"></div>
+                    </th>
+                    <th ng-click="sortData('status')">
+                        Status <div ng-class="getSortClass('status')"></div>
+                    </th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="aoc in addOnCharges | orderBy:sortColumn:reverseSort">
+                    <td ng-click="editAOC(aoc.id)"> {{ aoc.id }} </td>
+                    <td> {{ aoc.name }} </td>
+                    <td> {{ aoc.amount | number:2 }} </td>
+                    <td> {{ aoc.taxType }} </td>
+                    <td> {{ aoc.status}} </td>
+                </tr>
+            </tbody>
+        </table>
+        </br>
+        </br>
+<button class="w3-btn w3-green w3-ripple" ng-click="editAOC('new')">&#9998; Create New </button>
+ 
+ <form ng-hide="hideform">
+  <h3 ng-show="edit">New Add on charges</h3>
+  <h3 ng-hide="edit">Edit Add on charges</h3>
+     <label>Name</label><br>
+     <input type="text" ng-model="name" ng-disabled="!edit" placeholder="Name">
+     <br>
+    <label>Description</label><br>
+    <input type="text" ng-model="description" ng-disabled="!edit" placeholder="Description">
+    <br>
+    <table>
+        <tr>
+           <td>
+              <label>Charge Type</label>
+          </td>
+          <td>
+              <label>Tax Type</label>
+          </td>
+          <td>
+              <label>Amount Type</label>
+          </td>
+          <td>
+              <label>Amount</label>
+          </td>
+        </tr>
+        <tr>
+          <td>  
+             <select>
+                    <option value="1" selected>Tax</option>
+                    <option value="2">Service</option>
+             </select>
+          </td>
+          <td>
+              <select>
+                     <option value="1" selected>Inclusive</option>
+                     <option value="2">Exclusive</option>
+              </select>
+          </td>
+          <td>
+              <select>
+                     <option value="1" selected>Percentage</option>
+                     <option value="2">Fixed</option>
+              </select>
+          </td>
+           <td>
+              <input  ng-model="amount" placeholder="0.00">
+           </td>
+        </tr>
+        <tr>
+           <td>
+              <label>Status</label>
+           </td>    
+           <td>
+              <label>Activation Date</label>
+           </td>
+           <td>
+              <label>De-Activation Date</label>
+           </td>
+        </tr>
+        <tr>
+           <td>
+              <select>
+                     <option value="1">Active</option>
+                     <option value="2">Inactive</option>
+                     <option value="3" selected>Draft</option>
+              </select>
+           </td>
+           <td>
+              <input type=date ng-model="activationDate">
+           </td>
+           <td>   
+             <input type=date ng-model="deactivationDate">
+           </td>
+           </tr>
+       </table>
+     <button class="w3-btn w3-green w3-ripple" ng-disabled="error || incomplete">&#10004; Save Changes</button>
+ </form>
+
+ </div>

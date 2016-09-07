@@ -1,0 +1,85 @@
+<div ng-controller="aocController">
+        <table>
+            <thead>
+                <tr>
+                    <th ng-click="sortData('id')">
+                        Sl. No. <div ng-class="getSortClass('id')"></div>
+                    </th>                
+                    <th ng-click="sortData('name')">
+                        Name <div ng-class="getSortClass('name')"></div>
+                    </th>
+                    <th ng-click="sortData('description')">
+                        Description <div ng-class="getSortClass('description')"></div>
+                    </th>
+                    <th ng-click="sortData('status')">
+                        Status <div ng-class="getSortClass('status')"></div>
+                    </th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="aog in addOnGroups | orderBy:sortColumn:reverseSort">
+                    <td ng-click="editAOG(aog.id)"> {{ aog.id }} </td>
+                    <td> {{ aog.name }} </td>
+                    <td> {{ aog.description}} </td>
+                    <td> {{ aog.status}} </td>
+                </tr>
+            </tbody>
+        </table>
+        </br>
+        </br>
+<button class="w3-btn w3-green w3-ripple" ng-click="editAOC('new')">&#9998; Create New </button>
+ 
+ <form ng-hide="hideform">
+  <h3 ng-show="edit">List Of Add on charges</h3>
+  <h3 ng-hide="edit">List Of Add on charges</h3>
+     <label>Name</label><br>
+     <input type="text" ng-model="name" ng-disabled="!edit" placeholder="Name">
+     <br>
+    <label>Description</label><br>
+    <input type="text" ng-model="description" ng-disabled="!edit" placeholder="Description">
+    <br>
+    <label>Status</label>
+     <br>
+              <select>
+                     <option value="1">Active</option>
+                     <option value="2">Inactive</option>
+                     <option value="3" selected>Draft</option>
+              </select>
+               <br> <br>
+    <div ng-controller="aocController" ng-clock>
+        <table>
+            <thead>
+                <tr>
+                    <th ng-click="sortData('id')">
+                         <div ng-class="getSortClass('id')"></div>
+                    </th>                
+                    <th ng-click="sortData('name')">
+                        Name <div ng-class="getSortClass('name')"></div>
+                    </th>
+                     <th ng-click="sortData('description')">
+                        Description <div ng-class="getSortClass('description')"></div>
+                    </th>
+                    <th ng-click="sortData('chargeType')">
+                        Charge Type <div ng-class="getSortClass('chargeType')"></div>
+                    </th>
+                    <th ng-click="sortData('amount')">
+                        Amount <div ng-class="getSortClass('amount')"></div>
+                    </th>
+                    
+                 </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="aoc in addOnCharges | orderBy:sortColumn:reverseSort">
+                    <td> <input type="checkbox"> </td>
+                    <td> {{ aoc.name }} </td>
+                    <td> {{ aoc.description }} </td>
+                    <td> {{ aoc.chargeType}} ({{aoc.taxType}}) </td>
+                    <td> {{ aoc.amount | number:2 }} </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+     <button class="w3-btn w3-green w3-ripple" ng-disabled="error || incomplete">&#10004; Save Changes</button>
+ </form>
+
+ </div>

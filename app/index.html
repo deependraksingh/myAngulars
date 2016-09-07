@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+ <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="app.js"></script>
+      <title>My AngularJS App</title>
+  </head>
+  <body  ng-app="myApp">
+     <header > <h1>My AngularJS App</h1> </header>
+	   <nav >
+			    <a href="#/ar">AR Home</a>
+			    <a href="#/pos">POS</a>
+			    <a href="#/inventory">Inventory</a>
+		 </nav>
+         </br>    </br>
+                  <ng-view></ng-view>
+         </br>
+  
+     <footer>By Deependra Kumar Singh</footer>
+  </body>
+ </html>
